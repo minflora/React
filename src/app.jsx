@@ -46,6 +46,15 @@ class App extends Component{
     this.setState({habits });
   };
 
+  handleReset = () =>{
+    //habits라는 새로운 배열을 만들고 
+    const habits = this.state.habits.map(habit =>{
+      habit.count=0;
+      return habit;
+    });
+    this.setState({habits })
+  }
+
   render(){
     return(
       <>
@@ -58,6 +67,7 @@ class App extends Component{
               onDecrement={this.handleDecrement}
               onDelete = {this.handleDelete}
               onAdd={this.handleAdd}
+              onReset ={this.handleReset}
               />
         </>
         );  
