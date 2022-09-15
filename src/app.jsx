@@ -14,20 +14,20 @@ class App extends Component{
   };
 
    
-  handleIncrement =habit =>{
+  handleIncrement = habit =>{
+    const habits = this.state.habits.map(item =>{
+      if(item.id=== habit.id){
+        return{...habit, count: habit.count+1 };
+      }
+      return item;
+    });
+    this.setState( {habits});
     //state 오브젝트안에 있는 count를 증가 한뒤 state를 업데이트 해야함
     //this.state.count +=1;
-    console.log(`handleIncrement ${habit}`);
-    const habits=[...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
-    this.setState( {habits});
-    
   };
   
-  handleDecrement =habit =>{
+  handleDecrement = habit =>{
       //state 오브젝트안에 있는 count를 증가 한뒤 state를 업데이트 해야함
-      console.log(`handleDecrement ${habit}`);
       const habits =[...this.state.habits];
       const index = habits.indexOf(habit);
       const count = habits[index].count - 1;
@@ -50,9 +50,12 @@ class App extends Component{
     //habits라는 새로운 배열을 만들고 
     const habits = this.state.habits.map(habit =>{
       habit.count=0;
+      if(habit.count !==0){
+        return{...habit, count:0};
+      }
       return habit;
     });
-    this.setState({habits })
+    this.setState({habits });
   }
 
   render(){

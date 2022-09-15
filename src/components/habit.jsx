@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Habit extends Component {
+class Habit extends PureComponent {
     
+componentDidMount() {
+    console.log(`habit: ${this.props.habit.name} mounted`);
+}
+componentWillUnmount() {
+    console.log(`habit: ${this.props.habit.name} will mount`);
+}
 handleIncrement =(event) =>{
   //state 오브젝트안에 있는 count를 증가 한뒤 state를 업데이트 해야함
   //this.state.count +=1;
@@ -19,8 +25,9 @@ handleDelete =(event)=>{
 };
 
     render() {
-        console.log(this.props.habit);
-        const {name, count} = this.props.habit;
+        const {name} = this.props.habit;
+        const {count} = this.props;
+        console.log(`habit: ${name}`);
         return(
         <li className="habit">
         <span className="habit-name">{name}</span>

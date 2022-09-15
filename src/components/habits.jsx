@@ -3,7 +3,7 @@ import Habit from './habit';
 import HabitAddForm from './habitAddForm';
 
 class Habits extends Component {
-     
+
     handleIncrement =habit =>{
         //state 오브젝트안에 있는 count를 증가 한뒤 state를 업데이트 해야함
         //this.state.count +=1;
@@ -26,13 +26,14 @@ class Habits extends Component {
 
     render() {
         return (
-            <>
+            <div className="habits">
             <HabitAddForm onAdd={this.handleAdd}/>
                 <ul>
                     {this.props.habits.map(habit =>(
                             <Habit 
                             key={habit.id} 
-                            habit={habit} 
+                            habit={habit}
+                            count ={habit.count}
                             onIncrement={this.handleIncrement}
                             onDecrement={this.handleDecrement}
                             onDelete={this.handleDelete}
@@ -41,7 +42,7 @@ class Habits extends Component {
                         ))}
                 </ul>
                 <button className="habits-reset" onClick={this.props.onReset}>Reset All</button>
-            </>
+            </div>
         );
     }
 }
